@@ -61,9 +61,9 @@
 有段落标题自然会有段落，段落标签使用的是`<p></p>`，同样标签内包裹文本内容，
 
 ```html
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-  Ex, aperiam pariatur beatae reiciendis saepe dolore vero 
-  ratione molestiae sint eligendi ab odit veniam unde facere 
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  Ex, aperiam pariatur beatae reiciendis saepe dolore vero
+  ratione molestiae sint eligendi ab odit veniam unde facere
   provident explicabo rem? Earum, odio!</p>
 ```
 
@@ -348,3 +348,143 @@
 表格的边框则通过为`table`设置`border`属性以达到。
 
 以上是通过html的属性做出的表格效果，但是建议将表格效果通过css达到，html应当更多地偏重于页面结构地设置与语义化。
+
+## 表单
+
+定义表单结构使用`<form></form`标签，如下是一个表单的基本结构：
+
+```html
+<form action="" method="get">
+  <div>输入框：<input type="text"></div>
+</form>
+```
+
+![运行结果](./img/16.png)
+
+`<input/>`标签被渲染的结果是一个文本输入框。
+
+`form`中含有的`action`属性表示的是这个表单要被提交到的地址，`method`表示文件被提交的方式，被提交的方式一般有两种：`post`与`get`。
+
+### input的type属性用途
+
+`input`标签中的`type`决定了`input`的用途。
+
+#### 数字输入框
+
+`type=number`表示要求输入框内的值是数字；
+
+```html
+<div>数字：<input type="number"></div>
+```
+
+![运行结果](./img/18.png)
+
+#### 密码输入框
+
+`type=password`表示输入的内容会以黑点隐藏起来，
+
+```html
+<div>密码：<input type="password"></div>
+```
+
+![运行结果](./17.png)
+
+#### email输入框
+
+`type=email`要求输入框内的内容符合email格式；
+
+#### url输入框
+
+`type=url`要求输入框内的内容符合url格式；
+
+#### 提交按钮
+
+`type=submit`时，输入框变成一个按钮
+
+```html
+<form action="" method="get">
+  <div>输入框：<input type="text" required></div>
+  <input type="submit" value="提交">
+</form>
+```
+
+![运行结果](./img/19.png)
+
+它用于向表单的`action`提交表单的内容。
+
+#### 重置按钮
+
+与`type=submit`类似的还有`type=reset`，它与`submit`一样根据`value`属性渲染出按钮内容，如果按这个按钮会将输入框的内容重置。
+
+#### 搜索框
+
+将`input`的`type`设置成`search`会出现搜索框，我们进行搜索时一般会留有搜索历史，如果不想显示搜索历史，只需将`search`的`input`中添加`autocomplete="off"`即能关闭搜索历史。
+
+```html
+<input type="search" list="fruits">
+  <form>
+    <datalist id="fruits">
+      <option value="orange">橘子</option>
+      <option value="apple">苹果</option>
+      <option value="banana">香蕉</option>
+    </datalist>
+  </form>
+```
+
+![运行结果](./img/22.png)
+
+该搜索框采用了自定义的数据源`<datalist></datalist>`，`<option>`标签内使用的是每一项数据。
+
+### input的相关属性
+
+`input`元素中的`type='text'`出现一个输入框，当`input`中含有一个属性`required`时，表示该输入框中一定要输入内容,否则按提交按钮时无法提交。
+
+```html
+<form action="" method="get">
+  <div>输入框：<input type="text" required></div>
+  <input type="submit" value="提交">
+</form>
+```
+
+![运行结果](./img/20.png)
+
+当`input`中设置了`readonly`属性时，表示输入框中已经设置的`value`值不可通过输入更改，在提交时，`value`值会提交到后台；如果给`input`设置了`disabled`，也能达到`readonly`只读的效果，但不会把`value`值提交到后台中。
+
+`input`中设置`palceholder`表示设置一个"提示信息"，该"提示信息"文本内容，在输入框获得焦点时隐藏起来。
+
+```html
+<input type="text" name="" id="" placeholder="默认内容">
+```
+
+![运行结果](./img/21.png)
+
+`input`的`hidden`表示将输入框隐藏起来，但在提交信息时，依然会被提交（看不见，但是存在）。
+
+`input`的`pattern`可以为`input`设置一个正则表达式，用于javascript来验证`input`的输入内容是否符合正则的格式。
+
+### 单选按钮
+
+```html
+<form action="" method="get">
+  <label for="man">
+    <input type="radio" name="sex" value="man" id="man">男
+  </label>
+  <label for="woman">
+    <input type="radio" name="sex" value="woman" id="woman" checked>女
+  </label>
+</form>
+```
+
+![运行结果](./img/23.png)
+
+这个单选按钮的设置关键在于要将多个选项的`name`属性设为一致，另外就是为单选按钮设置`checked`时，它会默认被选中。
+
+设置`label`标签的优点在于，被点击`label`包裹的所有内容（包括文本内容），它都会指向`label`标签中`for`属性对应`id`值（意思是`for`等于号右边的是一个标签的`id`）。
+
+### 多选按钮
+
+```html
+<input type="checkbox" name="program[]" value="12"><label for="12">12岁</label>
+<input type="checkbox" name="program[]" value="13"><label for="13">13岁</label>
+```
+
