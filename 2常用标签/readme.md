@@ -56,9 +56,9 @@
 
 `<h1>`~`<h6>`标签就好比在word里写段落时的段落标题的级别，`h1`是最高的级别，也会被渲染成字体最大的级别。被包裹在标签内的是它的文本内容，最终会被浏览器渲染出来。
 
-## 段落标签`<p>`
+## 段落标签
 
-有段落标题自然会有段落，段落标签使用的是`<p></p>`，同样标签内包裹文本内容，
+有段落标题自然会有段落，段落标签使用的是`<p></>`，同样标签内包裹文本内容，
 
 ```html
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -247,7 +247,7 @@
 
 `<caption>`标签定义表格的标题，`<tr>`标签表示一行表格的内容，`<th>`定义表格的表头内容，而`<td>`则定义出表格基本单元格内容。
 
-为了增添表格的语义化，增加`<thead>`、`<tbody>`、`<tfoot>`标签：
+为了增添表格的语义化，增加`<thead>`、`<tbody>`、`<tfoot>`标签（实际上不仅仅为了语义化，还有方便网页对整个表格的加载）：
 
 ```html
 <table>
@@ -365,6 +365,33 @@
 
 `form`中含有的`action`属性表示的是这个表单要被提交到的地址，`method`表示文件被提交的方式，被提交的方式一般有两种：`post`与`get`。
 
+### input的相关属性
+
+`input`元素中的`type='text'`出现一个输入框，当`input`中含有一个属性`required`时，表示该输入框中一定要输入内容,否则按提交按钮时无法提交。
+
+```html
+<form action="" method="get">
+  <div>输入框：<input type="text" required></div>
+  <input type="submit" value="提交">
+</form>
+```
+
+![运行结果](./img/20.png)
+
+当`input`中设置了`readonly`属性时，表示输入框中已经设置的`value`值不可通过输入更改，在提交时，`value`值会提交到后台；如果给`input`设置了`disabled`，也能达到`readonly`只读的效果，但不会把`value`值提交到后台中。
+
+`input`中设置`palceholder`表示设置一个"提示信息"，该"提示信息"文本内容，在输入框获得焦点时隐藏起来。
+
+```html
+<input type="text" name="" id="" placeholder="默认内容">
+```
+
+![运行结果](./img/21.png)
+
+`input`的`hidden`表示将输入框隐藏起来，但在提交信息时，依然会被提交（看不见，但是存在）。
+
+`input`的`pattern`可以为`input`设置一个正则表达式，用于javascript来验证`input`的输入内容是否符合正则的格式。
+
 ### input的type属性用途
 
 `input`标签中的`type`决定了`input`的用途。
@@ -443,34 +470,7 @@
 <input type="file" name="" id="" accept=".png,.jpg">
 ```
 
-### input的相关属性
-
-`input`元素中的`type='text'`出现一个输入框，当`input`中含有一个属性`required`时，表示该输入框中一定要输入内容,否则按提交按钮时无法提交。
-
-```html
-<form action="" method="get">
-  <div>输入框：<input type="text" required></div>
-  <input type="submit" value="提交">
-</form>
-```
-
-![运行结果](./img/20.png)
-
-当`input`中设置了`readonly`属性时，表示输入框中已经设置的`value`值不可通过输入更改，在提交时，`value`值会提交到后台；如果给`input`设置了`disabled`，也能达到`readonly`只读的效果，但不会把`value`值提交到后台中。
-
-`input`中设置`palceholder`表示设置一个"提示信息"，该"提示信息"文本内容，在输入框获得焦点时隐藏起来。
-
-```html
-<input type="text" name="" id="" placeholder="默认内容">
-```
-
-![运行结果](./img/21.png)
-
-`input`的`hidden`表示将输入框隐藏起来，但在提交信息时，依然会被提交（看不见，但是存在）。
-
-`input`的`pattern`可以为`input`设置一个正则表达式，用于javascript来验证`input`的输入内容是否符合正则的格式。
-
-### 单选按钮
+#### 单选按钮
 
 ```html
 <form action="" method="get">
@@ -489,7 +489,7 @@
 
 设置`label`标签的优点在于，被点击`label`包裹的所有内容（包括文本内容），它都会指向`label`标签中`for`属性对应`id`值（意思是`for`等于号右边的是一个标签的`id`）。
 
-### 多选按钮
+#### 多选按钮
 
 ```html
 <input type="checkbox" name="program[]" value="12"><label for="12">12岁</label>
@@ -500,7 +500,9 @@
 
 和`radio`类似，不过`name="program[]"`中的`program[]`像是一个数组（或者列表），实际上`checkbox`的`value`被点击后确实会被添加进这个数组（或者列表）。
 
-### 下拉列表
+### 其它相关表单元素
+
+#### 下拉列表
 
 `select`用于设置下拉列表，`option`表示设置可以选择的子选项，`option`中设置一个`selected`表示该选项默认被选中。
 
@@ -516,7 +518,7 @@
 
 ![运行结果](./img/25.png)
 
-### 文本域
+#### 文本域
 
 `textarea`文本域，`rows`控制行数，`cols`控制列数，`textarea`设置默认值时不能使用`value`值，可以直接用代码块包裹默认值。
 
@@ -525,4 +527,3 @@
 ```
 
 ![运行结果](./img/26.png)
-
