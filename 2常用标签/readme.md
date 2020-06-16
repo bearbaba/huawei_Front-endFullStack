@@ -435,6 +435,14 @@
 
 该搜索框采用了自定义的数据源`<datalist></datalist>`，`<option>`标签内使用的是每一项数据。
 
+#### 文件上传
+
+把`input`中的`type`属性设置成`file`表示上传文件，文件格式用`accept`属性进行限制，例如要求上传"jpg"或者"png"格式文件时，`accept`设置成`accept=.jpg,.png`，`accept`可以接收多种文件格式，文件拓展名以逗号隔开；在`input`内使用`multiple`，同时`name`属性设置的值后面加上"[]"，可以同时上传多个文件。
+
+```html
+<input type="file" name="" id="" accept=".png,.jpg">
+```
+
 ### input的相关属性
 
 `input`元素中的`type='text'`出现一个输入框，当`input`中含有一个属性`required`时，表示该输入框中一定要输入内容,否则按提交按钮时无法提交。
@@ -487,4 +495,34 @@
 <input type="checkbox" name="program[]" value="12"><label for="12">12岁</label>
 <input type="checkbox" name="program[]" value="13"><label for="13">13岁</label>
 ```
+
+![运行结果](./img/24.png)
+
+和`radio`类似，不过`name="program[]"`中的`program[]`像是一个数组（或者列表），实际上`checkbox`的`value`被点击后确实会被添加进这个数组（或者列表）。
+
+### 下拉列表
+
+`select`用于设置下拉列表，`option`表示设置可以选择的子选项，`option`中设置一个`selected`表示该选项默认被选中。
+
+```html
+<label for="">
+  <select name="check-bar" id="">
+    <option value="0" selected>默认被选中</option>
+    <option value="1">新闻</option>
+    <option value="2">游戏</option>
+  </select>
+</label>
+```
+
+![运行结果](./img/25.png)
+
+### 文本域
+
+`textarea`文本域，`rows`控制行数，`cols`控制列数，`textarea`设置默认值时不能使用`value`值，可以直接用代码块包裹默认值。
+
+```html
+<textarea placeholder="提示信息" name="info" cols="20" rows="3">默认值</textarea>
+```
+
+![运行结果](./img/26.png)
 
