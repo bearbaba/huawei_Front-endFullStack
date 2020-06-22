@@ -1,0 +1,27 @@
+.text1{
+    color: red;
+    color: #f12a2a;
+    color: rgb(252, 0, 0);
+}
+
+.text2{
+    line-height: 50px;
+}
+
+.text3{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.text4{
+    text-align: right;
+}
+
+.text5{
+    direction: rtl;
+}
+
+.text6{
+    direction: ltr;
+}
