@@ -25,3 +25,30 @@
 .text6{
     direction: ltr;
 }
+
+.text7{
+    text-indent: 1em;
+}
+
+/* 上横线 */
+.text8{
+    text-decoration: overline;
+}
+
+/* 下划线 */
+.text9{
+    text-decoration: underline;
+}
+
+/* 删除线 */
+.text10{
+    text-decoration: line-through;
+}
+
+.text11{
+    letter-spacing: 2rem;
+}
+
+.text12{
+    text-shadow: 10px 12px 5px red;
+}

@@ -24,7 +24,7 @@
 
 ### 字体大小
 
-字体大小由`font-size`控制，字体大小默认是`16px`，可以设置成以`px`为单位的绝对值大小，也可以设置成百分比形式的相对于默认字体的大小，还可以使用`large`、`medium`、`small`这样的大小。
+字体大小由`font-size`控制，字体大小默认是`16px`，可以设置成以`px`为单位的绝对值大小，也可以设置成百分比形式的相对于默认字体的大小，还可以使用`large`、`medium`、`small`这样的大小。字体大小的单位还可以是`em`，它是相对字体大小，`1em`等同于1默认字体大小，如果默认字体大小被修改，`em`的大小也就不一样，与之相似的是`rem`，它取决于根字体的大小。
 
 ```html
 <div class="text2">World</div>
@@ -177,9 +177,96 @@
 
 ![运行结果](./img/10.png)
 
+### 缩进
+
+控制文本的首行缩进用`text-indent`属性，默认值为0，可以用长度值或者百分比大小让它缩进。
+
+```html
+<div class="text7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ipsa unde architecto sed, porro eveniet ad aut accusantium corporis! Minus, aliquam iure sint nisi at commodi nesciunt quae aperiam illum!</div>
+```
+
+```css
+.text7{
+    text-indent: 1em;
+}
+```
+
+![运行结果](./img/11.png)
+
+### 装饰线
+
+使用`text-decoration`属性来使文本拥有装饰线效果，
+
+```html
+<div class="text8">Hello World</div>
+<div class="text9">Hello World</div>
+<div class="text10">Hello World</div>
+```
+
+```css
+/* 上横线 */
+.text8{
+    text-decoration: overline;
+}
+
+/* 下划线 */
+.text9{
+    text-decoration: underline;
+}
+
+/* 删除线 */
+.text10{
+    text-decoration: line-through;
+}
+```
+
+![运行结果](./img/12.png)
+
+### 文字间隔
+
+使用`letter-spacing`属性控制文字字符间隔大小，间隔大小可以是负值。
+
+```html
+<div class="text11">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reiciendis natus inventore. Ea minus quae laborum optio reprehenderit quis est nemo culpa tempora rerum quos, deserunt unde placeat. Et, inventore.</div>
+```
+
+```css
+.text11{
+    letter-spacing: 2rem;
+}
+```
+
+![运行结果](./img/13.png)
+
+### 文字阴影
+
+使用`text-shadow`属性来控制文本阴影。语法格式：
+
+```css
+text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
+```
+
+例：
+
+```html
+<div class="text12">Hello World</div>
+```
+
+```css
+.text12{
+    text-shadow: 10px 12px 5px red;
+}
+```
+
+![运行结果](./img/14.png)
+
 ## 尺寸
 
-### 宽度
+### 宽度与高度
+
+宽度与高度是CSS最常用的属性之一，它们可以更改元素的长度与宽度。HTML元素自身的高度与宽度往往由内部元素决定，比如说`<div>Hello</div>`，能够使`div`元素拥有高度与宽度的原因在于它内部包含的文本让`div`被撑了起来。但是一些元素并不能通过`height`更改高度，这些元素大部分是内联元素（或称作行内元素），这在之后的章节会介绍到。
+
+我们可以给图片元素`img`设置相应的`width`、`height`改变它的原始大小。
 
 给文本设置`width`和`height`可以控制文本的长度，一般来说文本超过宽度会折行，但是如果还设置了文本的高度并且文本超过了这个设置的高度，文本并不会有什么变化，但是如果还设置了`overflow: hidden;`，那么超过这个设置的区域的文本会被隐藏。
 
@@ -197,4 +284,8 @@
 
 ![运行结果](./img/8.png)
 
-### 最小
+### 最小宽度/高度
+
+可以使用`min-width`与`min-height`分别来控制元素的最小宽度与最小高度，所谓最小宽度、最小高度是指浏览器的视口大小如果低于这个设定的值，那么该元素就不会显示相应样式。
+
+```html
