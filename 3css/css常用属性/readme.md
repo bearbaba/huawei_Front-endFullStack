@@ -290,9 +290,9 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 同样的，`max-height`与`min-width`也是同样的道理，它指定元素最大不能大于指定的值。
 
-### 列表属性
+## 列表属性
 
-#### list-style-image
+### list-style-image
 
 `list-style-image`可以通过设置属性值`url()`为列表每一项前设置一个图片，默认是`none`，即没有之意。例：
 
@@ -314,7 +314,7 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 ![运行结果](./img/15.png)
 
-#### list-style-position
+### list-style-position
 
 `list-style-position`用于在什么位置显示列表前的标记，默认属性值为`outside`，可以设置成`inside`。
 
@@ -336,7 +336,7 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 ![运行结果](./img/16.png)
 
-#### list-style-type
+### list-style-type
 
 `list-style-type`用于设置列表前每一项目的符号类型，默认属性值是`disc`。属性值可以设置成`none`，不显示列表项目符号。属性值也可以设置成`circle`、`square`等其它类型。
 
@@ -358,6 +358,73 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 ![运行结果](./img/17.png)
 
-#### 简写属性
+### 简写属性
 
 `list-style`是一个简写属性，它相当于`list-style-image + list-style-position + list-style-type`，与`font`简写属性一样，它允许省略其中几个属性值不写，但是它允许以任意顺序写这些属性值。
+
+## 背景
+
+### 背景颜色
+
+`backgoround-color`用来控制元素的背景颜色，例：
+
+```html
+<div class="bgc"></div>
+```
+
+```css
+.bgc{
+    width: 100px;
+    height: 100px;
+
+    background-color: rgb(255,0,0);
+}
+```
+
+![运行结果](./img/18.png)
+
+背景颜色的属性值可以是十六进制、可以是rgb属性值，也可以是具体颜色值。
+
+### 背景图像
+
+背景图像是由`background-image`来控制的，属性值是一个`url()`值。例：
+
+```html
+<div class="bgi"></div>
+```
+
+```css
+.bgi{
+    width:600px;
+    height: 300px;
+
+    background-image: url(./../img/bgi.png);
+}
+```
+
+![运行结果](./img/19.png)
+
+### 背景图片的重复
+
+`background-repeat`属性用来控制背景图片是否重复，与`background-repeat`配合使用，当背景图片宽高小于元素的宽高时，就会发生重复平铺现象。
+
+```html
+<div class="bgi2"></div>
+```
+
+```css
+.bgi2{
+    width: 1000px;
+    height: 100px;
+
+    background-image: url(./../img/bgi2.png);
+    background-repeat: repeat-x;
+}
+```
+
+![运行结果](./img/20.png)
+
+如果不特意指定该属性，那么背景图片将会在x轴与y轴方向同时重复。属性值设定为`no-repeat`时，则不会发生重复；设定为`repeat-x`时，则只会在x轴方向重复；设定为`repeat-y`时，则只会在y轴方向上重复。
+
+### background-position
+
