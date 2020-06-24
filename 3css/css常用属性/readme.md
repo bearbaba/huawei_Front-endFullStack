@@ -289,3 +289,75 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 在一个网页中，如果给图片大小`width`和`height`设定百分比的大小，那么它会随父元素（或者就是网页视口大小）的变大而变大，变小而变小，当不希望随视口一直变小而变小时，就可以设定`min-width`或者`min-height`，有了这个最小大小，就能确保元素最小不能小于这个指定的值。
 
 同样的，`max-height`与`min-width`也是同样的道理，它指定元素最大不能大于指定的值。
+
+### 列表属性
+
+#### list-style-image
+
+`list-style-image`可以通过设置属性值`url()`为列表每一项前设置一个图片，默认是`none`，即没有之意。例：
+
+```html
+<ul class="list1">
+  <li>列表1</li>
+  <li>列表2</li>
+  <li>列表3</li>
+  <li>列表4</li>
+  <li>列表5</li>
+</ul>
+```
+
+```css
+.list1{
+  list-style-image: url(./img/list.png);
+}
+```
+
+![运行结果](./img/15.png)
+
+#### list-style-position
+
+`list-style-position`用于在什么位置显示列表前的标记，默认属性值为`outside`，可以设置成`inside`。
+
+```html
+<ul class="list2">
+  <li>列表1</li>
+  <li>列表2</li>
+  <li>列表3</li>
+  <li>列表4</li>
+  <li>列表5</li>
+</ul>
+```
+
+```css
+.list2{
+    list-style-position:inside;
+}
+```
+
+![运行结果](./img/16.png)
+
+#### list-style-type
+
+`list-style-type`用于设置列表前每一项目的符号类型，默认属性值是`disc`。属性值可以设置成`none`，不显示列表项目符号。属性值也可以设置成`circle`、`square`等其它类型。
+
+```html
+<ul class="list3">
+  <li>列表1</li>
+  <li>列表2</li>
+  <li>列表3</li>
+  <li>列表4</li>
+  <li>列表5</li>
+</ul>
+```
+
+```css
+.list3{
+    list-style-type: square;
+}
+```
+
+![运行结果](./img/17.png)
+
+#### 简写属性
+
+`list-style`是一个简写属性，它相当于`list-style-image + list-style-position + list-style-type`，与`font`简写属性一样，它允许省略其中几个属性值不写，但是它允许以任意顺序写这些属性值。
