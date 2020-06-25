@@ -104,9 +104,9 @@
 文本颜色由属性`color`控制，属性值可以是十六进制表示的颜色，rgb属性值，或者常用的颜色英文属性值。
 
 ```html
-<div class="text1">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+<div class="text1">Lorem ipsum dolor sit amet consectetur adipisicing elit.
   Nam odit sint rem incidunt praesentium 
-  perferendis dignissimos vel amet delectus! Veniam, voluptatum nobis! 
+  perferendis dignissimos vel amet delectus! Veniam, voluptatum nobis!
   Perferendis natus dolorum eligendi nemo necessitatibus sunt cumque.
 </div>
 ```
@@ -127,7 +127,7 @@
 
 ```html
 <div class="text2">Lorem ipsum dolor sit amet, 
-  consectetur adipisicing elit. Voluptatum ipsum maiores dolor excepturi cum quia fugit, vel repellendus, asperiores quas rerum omnis 
+  consectetur adipisicing elit. Voluptatum ipsum maiores dolor excepturi cum quia fugit, vel repellendus, asperiores quas rerum omnis
   nobis sit similique aliquid quos earum at animi?
 </div>
 ```
@@ -426,5 +426,12 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 如果不特意指定该属性，那么背景图片将会在x轴与y轴方向同时重复。属性值设定为`no-repeat`时，则不会发生重复；设定为`repeat-x`时，则只会在x轴方向重复；设定为`repeat-y`时，则只会在y轴方向上重复。
 
+#### 编程中的坐标轴概念
+
+在编程语言中，一般来说坐标轴的起点都是在页面的左上角，x轴从左至右延伸，而y轴从上至下延伸。
+
+![坐标轴](./img/坐标轴.png)
+
 ### background-position
 
+这个属性与`background-image`搭配，用来控制背景图像的起始位置，默认的起始位置是图像的左上角位置。
