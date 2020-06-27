@@ -434,4 +434,67 @@ text-shadow: X轴偏移量+Y轴偏移量+高斯模糊距离+颜色值;
 
 ### background-position
 
-这个属性与`background-image`搭配，用来控制背景图像的起始位置，默认的起始位置是图像的左上角位置。
+这个属性与`background-image`搭配，用来控制背景图像的起始位置，默认的起始位置是图像的左上角位置，可以将属性值设置成如下位置值：
+
+* `top left`左上角
+* `top center`顶部居中位置
+* `top right`右上角
+* `bottom left`左下角
+* `bottom right`右下角
+* `bottom center`底部居中位置
+* `center left`左边缘居中位置
+* `center right`右边缘居中位置
+* `center center`图像中心位置
+
+如果仅设置一个关键词，那么第二个关键词默认是`center`。
+
+还可以使用百分比的格式`x% y%`，第一个位置值是水平位置，第二个位置值是垂直位置，左上角是坐标轴起点`0% 0%`，除了设置值为百分比外，还可以使用其它CSS单位。
+
+例，规定从背景图像的中心作为起点展示：
+
+```html
+<div class="bgi3"></div>
+```
+
+```css
+.bgi3{
+    width:300px;
+    height: 150px;
+    background-position:50% 50%;
+    background-image: url(./../img/bgi.png);
+
+}
+```
+
+![运行结果](./img/21.png)
+
+例，设置一个高宽300px的容器，让高宽200px的图像在容器中居中显示：
+
+```html
+<div class="bgi4"></div>
+```
+
+```css
+.bgi4{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    background-image: url(./../img/bgi1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+```
+
+![运行结果](./img/22.png)
+
+>以上效果是依据`background-position`的计算公式得到的：
+> x=(容器的宽度-背景图宽度)*x百分比=(300px-200px)*50%=50px;
+> y=(容器的高度-背景图高度)*y百分比=（300px-200px）*50%=50px;
+
+#### background-attachment
+
+`background-attachment`用于设置背景图是否随页面滚动，默认值是`scroll`即滚动，还可以设置成`fixed`固定（不随页面滚动而滚动）。
+
+#### 简写属性background
+
+以上的背景相关属性可以简写成`background`，可以按任意顺序放置这些属性值。

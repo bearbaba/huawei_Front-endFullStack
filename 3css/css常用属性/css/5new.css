@@ -19,3 +19,20 @@
     background-image: url(./../img/bgi2.png);
 
 }
+
+.bgi3{
+    width:300px;
+    height: 150px;
+    background-position:50% 50%;
+    background-image: url(./../img/bgi.png);
+
+}
+
+.bgi4{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    background-image: url(./../img/bgi1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
