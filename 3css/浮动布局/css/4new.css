@@ -1,0 +1,14 @@
+.box-out{
+    border: 1px solid black;
+}
+
+.box-in1{
+    width: 100px;
+    height: 100px;   
+    background-color: red;
+    float: left;
+}
+
+.box-in2{
+    clear: left;
+}

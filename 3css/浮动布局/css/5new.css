@@ -1,0 +1,15 @@
+.box-out{
+    border: 1px solid black;
+}
+
+.box-in{
+    width: 100px;
+    height: 100px;
+
+    background-color: blue;
+}
+
+.box-in::after{
+    content: none;
+    display: block;
+}

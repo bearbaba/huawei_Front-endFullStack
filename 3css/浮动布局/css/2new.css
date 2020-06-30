@@ -1,0 +1,12 @@
+.box-out{
+    height: 50px;
+    border: 1px solid black;
+}
+
+.box-in{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    float: left;
+}

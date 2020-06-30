@@ -4,13 +4,13 @@
 }
 
 .box1{
-    float: both;
-    margin-right: 100px;
+    float: left;
     background-color: black;
 }
 
 .box2{
-    margin-left: 100px;
-
+    width: 300px;
+    height: auto;
     background-color: blue;
+    float: right;
 }
