@@ -1,0 +1,107 @@
+* {
+  margin : 0px;
+  padding: 0px;
+}
+body{
+  min-width: 1900px;
+}
+.nav{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  position: absolute;
+}
+
+.logo{
+  width: 120px;
+  height:40px;
+  margin: 10px 40px;
+  background-image: url(https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.12.003/logo.ee14f183979fd61abac2.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+.list-text{
+  list-style-type: none;
+}
+
+.list-text li{
+  display: inline;
+  margin-right: 40px;
+}
+
+.list-text li>a{
+  color: rgb(44, 43, 43);
+  text-decoration: none;
+}
+
+.list-text li>a:hover,
+.list-text li:nth-child(1) a{
+  color: rgb(12, 117, 238);
+}
+
+.switch-text{
+  height: 100%;
+  padding-top: 22px;
+}
+
+.teach-button{
+  display: block;
+  width: 100px;
+  height: 25px;
+  border: 1px solid #ccc;
+
+  border-radius: 20px;
+  text-align: center;
+  background: #fafafa;
+  margin-top: 20px;
+}
+
+.teach-button:hover{
+  border: 1px solid rgb(21, 151, 238);
+}
+
+.teach-button>a{
+  text-decoration: none;
+  color: black;
+}
+
+.personal-button{
+  margin-top: 10px;
+  vertical-align: middle;
+  display: flex;
+  margin-left: 50px;
+}
+
+.personal-button>div{
+  background-color: #ff8f74;
+  color: white;
+  font-size: 20px;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.personal-button>span{
+  display: block;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+.header {}
+
+.content {}
+
+.content .intro-box {}
+
+.content .class-box {}
+
+.content .market-box {}
+
+.content .activity-box {}
+
+.footer {}
