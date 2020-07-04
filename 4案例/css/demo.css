@@ -3,13 +3,17 @@
   padding: 0px;
 }
 body{
-  min-width: 1900px;
+  min-width: 1000px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .nav{
   width: 100%;
   height: 60px;
   display: flex;
-  position: absolute;
+  position: fixed;
+  z-index: 20;
+  background-color: white;
+  top: 0;
 }
 
 .logo{
@@ -46,7 +50,7 @@ body{
   padding-top: 22px;
 }
 
-.teach-button{
+.button{
   display: block;
   width: 100px;
   height: 25px;
@@ -58,7 +62,7 @@ body{
   margin-top: 20px;
 }
 
-.teach-button:hover{
+.button:hover{
   border: 1px solid rgb(21, 151, 238);
 }
 
@@ -92,13 +96,82 @@ body{
   margin-top: 10px;
 }
 
-.header {}
+.header {
+  top: 60px;
+  position: relative;
+}
 
-.content {}
 
-.content .intro-box {}
+.content {
+  position: relative;
+}
 
-.content .class-box {}
+.content .intro-box {
+  background: #ffffff;
+  width: 1200px;
+  height: 124px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px 0 rgba(41, 48, 64, .1);
+  margin-top: 30px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.intro-box-text{
+  float: left;
+  width: 1000px;
+  line-height: 32px;
+  margin: auto 0;
+  color: #293040;
+}
+
+.intro-box-button{
+  float:right;
+  background: #5e7ce0;
+  color: white;
+}
+
+.intro-box-button:hover{
+  background-color: #526ecc;
+  border: #526ecc 1px solid;
+}
+
+
+
+.class-box {
+  padding: 80px 40px;
+}
+
+.title{
+  text-align: center;
+}
+
+.title>div{
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.title span{
+  color: #575d6c;
+}
+
+.content-block{
+  width: 360px;
+  height: 386px;
+  box-shadow: 0 4px 16px 0 rgba(124, 142, 227, .12);
+  border-radius: 12px;
+  margin: 0 30px 30px 0;
+}
+
+.class-content{
+  display: flex;
+  flex-wrap: wrap;
+  /*这里要进行修改*/
+  justify-items: center;
+  align-items: center;
+}
 
 .content .market-box {}
 
