@@ -162,15 +162,16 @@ body{
   height: 386px;
   box-shadow: 0 4px 16px 0 rgba(124, 142, 227, .12);
   border-radius: 12px;
-  margin: 0 30px 30px 0;
+  margin: 20px 10px ;
 }
 
 .class-content{
   display: flex;
   flex-wrap: wrap;
   /*这里要进行修改*/
-  justify-items: center;
-  align-items: center;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid black;
 }
 
 .content .market-box {}
