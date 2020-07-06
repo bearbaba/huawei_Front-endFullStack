@@ -3,7 +3,7 @@
   padding: 0px;
 }
 
-html{
+html {
   min-width: 1000px;
 }
 
@@ -176,13 +176,12 @@ body {
 .class-content {
   display: flex;
   flex-wrap: wrap;
-  /*这里要进行修改*/
   justify-content: center;
   align-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
-.content-block:hover{
+.content-block:hover {
   margin-top: 10px;
   box-shadow: 0 16px 20px 0 rgba(124, 142, 227, .24) !important;
 }
@@ -197,22 +196,22 @@ body {
 }
 
 #img1 {
-  background-position:0% 0%;
+  background-position: 0% 0%;
 }
 
-.time{
+.time {
   border: 1px solid #959eb2;
   border-radius: 15px;
   padding: 2px;
   float: right;
 }
 
-.content-block-text{
+.content-block-text {
   color: #959eb2;
   font-size: 15px;
 }
 
-.content-block-img+div{
+.content-block-img+div {
   padding: 10px 20px;
 }
 
@@ -221,24 +220,24 @@ body {
   font-weight: bold;
 }
 
-.content-block-interpretation{
+.content-block-interpretation {
   height: 46px;
   clear: right;
   overflow: hidden;
   text-overflow: ellipsis;
-  display:-webkit-box; 
-  -webkit-box-orient:vertical; 
-  -webkit-line-clamp:2; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   margin-top: 20px;
   line-height: 24px;
 }
 
-.interpretation-border{
+.interpretation-border {
   padding-bottom: 10px;
   border-bottom: #ccc 1px solid;
 }
 
-.free{
+.free {
   float: right;
   color: #e41f2b;
   background: rgba(228, 31, 43, .1);
@@ -249,11 +248,62 @@ body {
   background-position: 0% 9.1%;
 }
 
-#img3{
+#img3 {
   background-position: 0 18.2%;
 }
 
-.content .market-box {}
+#img4 {
+  background-position: 0 27.3%;
+}
+
+#img5 {
+  background-position: 0 36.4%;
+}
+
+#img6 {
+  background-position: 0 45.45%;
+}
+
+#more {
+  padding: 5px;
+}
+
+#more>span {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.content .market-box {
+  background-color: #FAFAFA;
+  padding-top: 60px;
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
+
+#img7 {
+  background-position: 0 54.55%;
+}
+
+#img8 {
+  background-position: 0 63.65%;
+}
+
+#img9 {
+  background-position: 0 72.75%;
+}
+
+#img10 {
+  background-position: 0 81.85%;
+}
+
+#img11 {
+  background-position: 0 90.95%;
+}
+
+#img12 {
+  background-position: 0 100%;
+}
+
 
 .content .activity-box {}
 
