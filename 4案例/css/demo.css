@@ -84,7 +84,45 @@ body {
   margin-left: 50px;
 }
 
-.personal-button>div {
+.personal-button-hover{
+  width: 200px;
+
+  position: absolute;
+  display: none;
+  top: 60px;
+  right: 30px;
+  padding: 10px 0;
+  border-radius: 2px;
+}
+
+.personal-button-hover>ul{
+  list-style-type: none;
+}
+
+.personal-button-hover li{
+  line-height: 30px;
+  text-indent: 1rem;
+}
+
+.personal-button-hover li:hover{
+  color: #e41f2b;
+  background-color: #d1d5dd;
+}
+
+.personal-button:hover .personal-button-hover{
+  z-index: 90;
+  display: block;
+  background: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+#center{
+  text-align: center;
+  text-indent: 0;
+}
+
+
+.personal-button>.personal-logo{
   background-color: #ff8f74;
   color: white;
   font-size: 20px;
@@ -92,7 +130,7 @@ body {
   width: 40px;
   height: 40px;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 8px;
   box-sizing: border-box;
 }
 
@@ -305,6 +343,84 @@ body {
 }
 
 
-.content .activity-box {}
+.content .activity-box {
+  margin-top:60px;
+}
 
-.footer {}
+.activity-box .activity-box-title{
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.activity-box-content{
+  width: 100%;
+  height: 127px;
+  border-bottom: #ccc 1px solid;
+  margin-top: 30px;
+
+}
+
+.activity-box-text{
+  position: relative;
+  left: 40px;
+}
+
+.activity-img{
+  width: 160px;
+  height: 90px;
+  background-repeat: no-repeat;
+  background-image: url(https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.12.003/notice.b7839ff8db59462824d7.png);
+  float: left;
+}
+
+#activity-img1{
+  background-position: 0 0;
+}
+
+#activity-img2{
+  background-position: 0 20%;
+}
+
+#activity-img3 {
+  background-position: 0 40%;
+}
+
+#activity-img4 {
+  background-position: 0 60%;
+}
+
+#activity-img5 {
+  background-position: 0 80%;
+}
+
+#activity-img6 {
+  background-position: 0 100%;
+}
+
+.activity-box-link{
+  font-size: 20px;
+}
+
+.activity-box-link:hover{
+  color: rgb(12, 117, 238);
+}
+
+.activity-time{
+  position: relative;
+  top: 40px;
+  color: #959eb2;
+}
+
+.footer {
+  height: 100px;
+  background: #fafaf0;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.footer>div{
+  color: #aaa;
+  margin: 10px;
+}
