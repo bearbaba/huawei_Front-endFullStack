@@ -1,0 +1,9 @@
+# gitignore template for this projects
+#
+# Recommended template: Node.gitignore
+
+# TODO: where does this rule come from?
+node_modules/
+
+# TODO: where does this rule come from?
+bin
