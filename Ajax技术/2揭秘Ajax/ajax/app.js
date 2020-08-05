@@ -41,10 +41,14 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
-app.use(async function(ctx, next){
-  if(ctx.path=="/ajax"){
-    ctx.body="hello ajax"
+app.use(async function (ctx) {
+  if (ctx.path == "/ajax") {
+    ctx.body = "var variable='hello world'";
   }
-})
+  else{
+    console.log("error");
+  }
+});
+
 
 module.exports = app
