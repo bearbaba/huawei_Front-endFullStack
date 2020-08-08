@@ -42,12 +42,13 @@ app.on('error', (err, ctx) => {
 });
 
 app.use(async function(ctx){
-  if(ctx.path=='/jq'){
-    if(ctx.request.body.account=="zhang" && ctx.request.body.pwd=== '123'){
-      ctx.body=="登录成功";
+  console.log("hi");
+  if(ctx.path=='/login'){
+    if(ctx.request.body.account=="zhang" && ctx.request.body.pwd== '123'){
+      ctx.body="登录成功";
     }
     else{
-      ctx.body=="登录失败";
+      ctx.body="登录失败";
     }
   }
 })

@@ -6,10 +6,13 @@ btn.onclick = function(){
   pwd = document.getElementById("pwd").value;
   ajax({
     type: "post",
-    url: "/jq",
+    url: "/login",
     data:{
       account: account,
       pwd: pwd
+    },
+    success:function (data){
+      alert(data);
     }
   });
 }
@@ -39,9 +42,11 @@ function ajax(opt){
 
   var paramStr = "";
   for(var k in defaultParam.data){
-    paramStr += k+'='+defaultParam.data[k]+"&";  
+    paramStr += (k+'='+defaultParam.data[k]+"&");  
   }
   paramStr = paramStr.substr(0, paramStr.length-1);
+  console.log(paramStr);
+  console.log(defaultParam.url);
   if(defaultParam.type == 'get'){
     xhr.open(defaultParam.type, defaultParam.url+"?"+paramStr,defaultParam.async)
   }else{
