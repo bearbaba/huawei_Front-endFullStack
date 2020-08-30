@@ -1,12 +1,12 @@
-# node¸ÅÒª
+# nodeæ¦‚è¦
 
-`node.js`ÊÇÔÚ·þÎñÆ÷¶ËÄÚÔËÐÐ JS µÄ JS ÔËÐÐ»·¾³¡£
-Node ²ÉÓÃ V8 ÒýÇæÔËÐÐ JS ´úÂë£¬Ê¹ÓÃÊÂ¼þÇý¶¯¡¢·Ç×èÈûÊ½ºÍÒì²½ I/O Ä£ÐÍÌá¸ßÐÔÄÜ¡£
-Node ´´Ê¼ÈË Ryan Dahl Ò»¿ªÊ¼´´Ôì Node ÊÇÎªÁË½â¾ö·þÎñÆ÷¸ß²¢·¢µÄÐÔÄÜÎÊÌâ¡£
+`node.js`æ˜¯åœ¨æœåŠ¡å™¨ç«¯å†…è¿è¡Œ JS çš„ JS è¿è¡ŒçŽ¯å¢ƒã€‚
+Node é‡‡ç”¨ V8 å¼•æ“Žè¿è¡Œ JS ä»£ç ï¼Œä½¿ç”¨äº‹ä»¶é©±åŠ¨ã€éžé˜»å¡žå¼å’Œå¼‚æ­¥ I/O æ¨¡åž‹æé«˜æ€§èƒ½ã€‚
+Node åˆ›å§‹äºº Ryan Dahl ä¸€å¼€å§‹åˆ›é€  Node æ˜¯ä¸ºäº†è§£å†³æœåŠ¡å™¨é«˜å¹¶å‘çš„æ€§èƒ½é—®é¢˜ã€‚
 
-## node ÔËÐÐ JS ´úÂë
+## node è¿è¡Œ JS ä»£ç 
 
-ÔÚÃüÁîÐÐÄÚÊäÈë`node`ºó»Ø³µ»á´ò¿ª½»»¥Ê½µÄ¹¤¾ß£¬½»»¥Ê½¹¤¾ß»áÖðÐÐÖ´ÐÐ JS ´úÂë£¬Ò»°ã²»³£ÓÃ¡£
+åœ¨å‘½ä»¤è¡Œå†…è¾“å…¥`node`åŽå›žè½¦ä¼šæ‰“å¼€äº¤äº’å¼çš„å·¥å…·ï¼Œäº¤äº’å¼å·¥å…·ä¼šé€è¡Œæ‰§è¡Œ JS ä»£ç ï¼Œä¸€èˆ¬ä¸å¸¸ç”¨ã€‚
 
-Ò²¿ÉÒÔÔÚ±à¼­Æ÷ÄÚÐ´ºÃ JS ´úÂëºóÊ¹ÓÃ`node [jsÎÄ¼þÃû]`µÄ·½Ê½À´Ö´ÐÐÕû¸ö JS ÎÄ¼þ¡£
+ä¹Ÿå¯ä»¥åœ¨ç¼–è¾‘å™¨å†…å†™å¥½ JS ä»£ç åŽä½¿ç”¨`node [jsæ–‡ä»¶å]`çš„æ–¹å¼æ¥æ‰§è¡Œæ•´ä¸ª JS æ–‡ä»¶ã€‚
 
