@@ -72,3 +72,105 @@ fs.open("./abc.txt", "w", function(err, fd){
 异步的文件写入方法也有可能出现类似的异步错误，所以也会分为无错误和有错误的情况，`fs.close(fd, err)`也是同理。同样在没有出现异步错误时进行下一步的处理，也就是`fs.close(fd, err)`。
 
 虽然异步方法在用法上比同步方法要更加复杂些，不如同步方法直观，但在程序运行时是要比同步方法更加通用的。
+
+## 简单文件读写
+
+上述无论是同步还是异步的文件读写方法在实际开发中使用的并不频繁，使用更多的是简化的同步文件读写`fs.writeFileSync()与异步文件读写`fs.writeFile()`。
+
+这个简化的异步文件读写方法`fs.writeFile(path, data[, options], callback)`中`path`、`data`、`callback`的含义依然是文件路径、需要写入文件的内容、回调函数。`options`参数是一个键值对，里面包含着`encoding`编码方式，`mode`参数,`flag`读写模式，`flag`默认为`w`。
+
+```js
+var fs = require("fs")
+
+fs.writeFile("abc.txt","hello",function (err){
+  if(!err){
+    console.log("创建成功")
+  }else{
+    console.log(err)
+  }
+})
+```
+
+以上是一个将内容写入文件的实例，可以看到它并不需要使用类似的`open()`与`close()`方法。
+
+但是写入文件的内容默认是将原有的内容进行覆盖，如果我们希望在原有的文件内容上进行追加，就需要使用将`flag: "w"`修改成`flag: "a"`。例：
+
+```js
+var fs = require("fs")
+
+fs.writeFile("abc.txt","hello", {flag:"a"}, function (err){
+  if(!err){
+    console.log("创建成功")
+  }else{
+    console.log(err)
+  }
+})
+```
+
+## 流式文件写入
+
+简单文件读写、同步文件读写与异步文件读写都是一次性读写，一次性时所占据内存太大，性能较差，容易导致内存溢出。
+
+流式文件能持续为文件内容进行写入。
+
+流式文件写入方法手写依然需要导入`fs`模块，然后需要使用`fs.createWriteStream(path[, options])`方法创建一个可写文件流，写入文件内容时需要使用这个可写流的`write`方法。例：
+
+```js
+var fs = require("fs")
+
+var ws = fs.createWriteStream("abc.txt")
+
+ws.write("hello world")
+```
+
+上述的`ws.write()`方法在使用关闭文件流的方法之前可以多次使用以持续为文件写入内容。
+
+文件流的打开与关闭的监测可以通过`ws.on()`方法来监听流的`open`与`close`事件来完成。例：
+
+```js
+ws.on("open", function () {
+  console.log("文件流已打开");
+});
+
+ws.on("close", function () {
+  console.log("文件流已关闭");
+});
+```
+
+但是这个`ws.on()`方法的缺点在于它也是持续使用的，在它开始对文件流进行监听后，只要文件流出现了相应事件，就会调用它的回调函数，即使我们在关闭文件流后又重新打开文件流时已不需要它进行监听了，它依然会去调用对应事件的回调函数。
+
+`ws.once()`在功能与`ws.on()`类似，但不同的是`ws.once()`方法是一次性的，在所监听的事件出现后就会失效。
+
+如果我们需要关闭一个文件流，使用的方法不再是`ws.close()`，而是`ws.end()`方法。
+
+```js
+var fs = require("fs")
+
+var ws = fs.createWriteStream("abc.txt")
+
+/* ws.on("open", function () {
+  console.log("文件流已打开");
+});
+
+ws.on("close", function () {
+  console.log("文件流已关闭");
+}); */
+
+ws.once("open", function(){
+  console.log("文件流已打开")
+})
+
+ws.once("close", function(){
+  console.log("文件流已关闭")
+})
+
+ws.write("hello world")
+
+ws.write("\n hello world")
+
+ws.write("\n w")
+
+ws.end()
+```
+
+
