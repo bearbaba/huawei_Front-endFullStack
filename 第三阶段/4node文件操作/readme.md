@@ -8,9 +8,9 @@ const fs = require("fs");
 
 `fs`文件系统对文件的操作方法大部分都是分同步与异步的，同步方法会阻塞程序，而异步方法则不会。
 
-## 同步文件读写
+## 同步文件写入
 
-同步文件读写首先需要使用`fs.openSync(path, flags, mode);`。`path`是该文件名称及其路径。`flags`参数则决定了该方法是对文件的读还是写，如果是“读”操作，则设置为`r`；如果是“写”操作，则设置为`w`。`mode`则是操作文件的权限设置，一般不写。
+同步文件写入首先需要使用`fs.openSync(path, flags, mode);`。`path`是该文件名称及其路径。`flags`参数则决定了该方法是对文件的读还是写，如果是“读”操作，则设置为`r`；如果是“写”操作，则设置为`w`。`mode`则是操作文件的权限设置，一般不写。
 
 如果需要将字符串写入文件内，则需要用上`fs.writeFileSync(fd, string [,position, encoding])`。`fd`是指使用`fs.openSync()`生成的文件对象。`string`则是字符串内容。`position`表示起始位置，设置为2时，就会让文件内容前添加两个空格。`encoding`则是文件的编码方式，默认为`utf-8`。
 
@@ -26,9 +26,9 @@ fs.closeSync(fd)
 
 ```
 
-## 异步文件读写
+## 异步文件写入
 
-与同步文件读写方法一样，在使用前需要导入`fs`模块：
+与同步文件写入方法一样，在使用前需要导入`fs`模块：
 
 ```js
 var fs = require("fs");
@@ -73,11 +73,11 @@ fs.open("./abc.txt", "w", function(err, fd){
 
 虽然异步方法在用法上比同步方法要更加复杂些，不如同步方法直观，但在程序运行时是要比同步方法更加通用的。
 
-## 简单文件读写
+## 简单文件写入
 
-上述无论是同步还是异步的文件读写方法在实际开发中使用的并不频繁，使用更多的是简化的同步文件读写`fs.writeFileSync()与异步文件读写`fs.writeFile()`。
+上述无论是同步还是异步的文件写入方法在实际开发中使用的并不频繁，使用更多的是简化的同步文件写入方法`fs.writeFileSync()与异步文件写入方法`fs.writeFile()`。
 
-这个简化的异步文件读写方法`fs.writeFile(path, data[, options], callback)`中`path`、`data`、`callback`的含义依然是文件路径、需要写入文件的内容、回调函数。`options`参数是一个键值对，里面包含着`encoding`编码方式，`mode`参数,`flag`读写模式，`flag`默认为`w`。
+这个简化的异步文件写入方法`fs.writeFile(path, data[, options], callback)`中`path`、`data`、`callback`的含义依然是文件路径、需要写入文件的内容、回调函数。`options`参数是一个键值对，里面包含着`encoding`编码方式，`mode`参数,`flag`读写模式，`flag`默认为`w`。
 
 ```js
 var fs = require("fs")
@@ -109,11 +109,11 @@ fs.writeFile("abc.txt","hello", {flag:"a"}, function (err){
 
 ## 流式文件写入
 
-简单文件读写、同步文件读写与异步文件读写都是一次性读写，一次性时所占据内存太大，性能较差，容易导致内存溢出。
+简单文件写入、同步文件写入与异步文件写入都是一次性写入，一次性时所占据内存太大，性能较差，容易导致内存溢出。
 
 流式文件能持续为文件内容进行写入。
 
-流式文件写入方法手写依然需要导入`fs`模块，然后需要使用`fs.createWriteStream(path[, options])`方法创建一个可写文件流，写入文件内容时需要使用这个可写流的`write`方法。例：
+流式文件写入方法首先依然需要导入`fs`模块，然后需要使用`fs.createWriteStream(path[, options])`方法创建一个可写文件流，写入文件内容时需要使用这个可写流的`write`方法。例：
 
 ```js
 var fs = require("fs")
@@ -173,4 +173,6 @@ ws.write("\n w")
 ws.end()
 ```
 
+## 简单文件读取
 
+文件写入方法有同步方法、异步方法、简单读取方法和流式读取方法
