@@ -175,4 +175,96 @@ ws.end()
 
 ## 简单文件读取
 
-文件写入方法有同步方法、异步方法、简单读取方法和流式读取方法
+文件写入方法有同步方法、异步方法、简单写入方法和流式写入方法，同样的，文件读取方法也有同步、异步、简单读取和流式读取方法。
+
+简单读取方法使用`readFile(path[, options], callback)`方法，`callback`回调函数含有两个参数`err`和`data`，`err`在异步调用错误时出现，而`data`则是文件的内容，需要注意这个`data`的类型是`Buffer`类型的，如果要读取的是文本文件的内容，就需要使用`toString()`方法将它转换为字符串。
+
+```js
+var fs = require("fs")
+
+fs.readFile("a.txt", function (err, data){
+  if(!err){
+    console.log(data.toString())
+  }else{
+    console.log("读取时出错了")
+  }
+})
+```
+
+由于`data`是`Buffer`类型的，意味着我们实际上可以读取任意一种类型的文件，而不仅限于文本文件。例，读取图片文件“a.png”，并重新保存为“b.png”。
+
+```js
+var fs = require("fs")
+
+fs.readFile("./a.png", function (err,data){
+  if(!err){
+    fs.writeFile("b.png", data,function (err){
+      if(!err){
+        console.log("写入成功")
+      }else{
+        console.log("写入失败")
+      }
+    })
+  }else{
+    console.log("读取错误")
+  }
+})
+```
+
+## 流式文件读写
+
+简单文件读取是一次性的读取，它会占用大量内存，而流式文件读取则适用于大文件的读取。
+
+使用它时需要创建一个可读流。
+
+```js
+var fs = require("fs")
+
+var rs = fs.createReadStream("a.png")
+```
+
+可读流的读取需要为它绑定一个`data`事件，当`data`事件绑定完毕时，会自动读取数据。
+
+```js
+var fs = require("fs")
+
+var rs = fs.createReadStream("a.png")
+
+var ws = fs.createWriteStream("b.png")
+
+rs.once("open", function (){
+  console.log("可读流打开")
+})
+
+rs.once("close", function(){
+  ws.end()
+  console.log("可读流关闭")
+})
+
+ws.once("open", function () {
+  console.log("可写流打开");
+});
+
+ws.once("close", function () {
+  console.log("可写流关闭");
+});
+
+rs.on("data", function (data){
+  console.log(data)
+  ws.write(data)
+})
+```
+
+以上是对一个文件的读取并且最终保存为`b.png`，可以看到可读流并不需要手动关闭，它自己就会关闭，而可写流则需要在文件可读流关闭前手动关闭，这样的过程是略有些复杂的。
+
+`fs.pipe(ws)`，可以将可读流的内容输出到可写流中。
+
+```js
+var fs = require("fs")
+
+var ws = fs.createWriteStream("c.png")
+
+var rs = fs.createReadStream("a.png")
+
+rs.pipe(ws)
+```
