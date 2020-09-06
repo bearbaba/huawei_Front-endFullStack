@@ -268,3 +268,117 @@ var rs = fs.createReadStream("a.png")
 
 rs.pipe(ws)
 ```
+
+## fs 模块的其它操作
+
+### 验证路径是否存在
+
+`fs.existsSync(path)`是用于验证文件路径是否存在的同步方法，用法例：
+
+```js
+var fs = require("fs")
+
+var isExists=fs.existsSync("a.c")
+
+console.log(isExists)
+```
+
+此处输出为`false`。
+
+它存在异步方法`fs.exists(path, callback)`，但这个方法已被废弃。
+
+需要注意的是只是在对性能上有要求时我们才会使用异步方法。
+
+### 返回当前文件状态信息
+
+可以使用`fs.stat(path, callback)`这个异步方法中的回调函数返回一个对象，对象中保存着当前文件的状态信息。例：
+
+```js
+var fs = require("fs")
+
+fs.stat("a.txt", function (err,stats){
+  console.log(stats.isFile())
+  console.log(stats.isDirectory())
+  console.log(stats.size)
+})
+```
+
+以上的`stats.isFile()`用于验证对象是否为文件，`stats.isDirectory()`用于验证对象是否为文件夹，`stas.size`显示该文件的大小占多少字节。其实还有其它属性和方法，这里不再赘述。
+
+### 删除文件
+
+可以使用`fs.unlinkSync(path)`和`fs.unlink(path, callback)`删除文件，
+
+```js
+var fs = require("fs")
+fs.unlinkSync("a.txt")
+```
+
+### 列出文件
+
+列出文件的方法使用`fs.readdir(path[, options], callback)`和`fs.readdirSync(path[, options])`，
+
+```js
+var fs = require("fs")
+
+var dirName = fs.readdirSync(".")
+
+console.log(dirName)
+```
+
+### 截断文件
+
+截断文件是指将文件中内容使用字节数进行截取，截断文件的方法可以用`fs.truncate(path, len, callback)`和`fs.truncateSync(path, len)`，`len`是需要进行截断的字节数，可以将文件重新修改为指定大小。
+
+```js
+var fs = require("fs")
+
+fs.truncateSync("a.txt", 4)
+```
+
+需要注意的是文件一般使用的是`utf-8`编码方式，中文一个汉字占三个字节在`utf-8`编码中。
+
+### 新建文件夹
+
+新建文件夹使用的是`fs.mkdir(path[, mode], callback)`和`fs.mkdirSync(path)`，它可以在指定路径中创建文件夹。
+
+``` js
+var fs = require("fs")
+
+fs.mkdirSync("abc")
+```
+
+### 删除文件夹
+
+删除文件夹使用的是`fs.rmdir(path, callback)`和`fs.rmdirSync(path)`方法，也只能删除文件夹。
+
+```js
+var fs = require("fs")
+
+fs.rmdirSync("a")
+```
+
+### 重命名文件和目录
+
+重命名文件和目录使用的是`fs.rename(oldPath, newPath, callback)`，或者同步的`fs.renameSync(oldPath, newPath)`，`newpath`指的是这个文件或者文件夹的新路径，`oldPath`显然是旧路径了，这个方法能做到一种剪切、粘贴的效果。
+
+```js
+var fs = require("fs")
+
+fs.renameSync("b.txt", "c.txt")
+```
+
+### 监听文件
+
+`fs.watchFileSync(filename[, option], listener)`能够监听文件是否被修改，`listener`是这个方法的回调函数，这个回调函数有两个参数`curr`和`prew`，`curr`指的是当前文件的状态，`prew`指的是修改前的状态。
+
+但是这个方法的反馈时间默认是比较慢的，可以修改`options`来实现更快的反馈。例：
+
+```js
+var fs = require("fs")
+
+fs.watchFile("c.txt", {interval: 1000}, function(curr, prev){
+  console.log(curr.size)
+  console.log(prev.size)
+})
+```
