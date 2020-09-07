@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .activeColor{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div :class="{activeColor: activeColor}">HELLO WORLD</div>
+    <input type="button" @click="changeColor" value="click"/>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        activeColor: false
+      },
+      methods: {
+        changeColor(){
+          this.activeColor = !this.activeColor;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
