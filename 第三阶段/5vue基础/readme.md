@@ -4,36 +4,39 @@
 
 Vue 是一种渐进式的 JavaScript 框架，它采用的是 MVVM 模式。
 
-Vue 的优点在于它的编码模式简洁，体积小，运行效率高，适合移动端和PC端的开发，它只关注于 UI ，可以轻松引入 Vue 插件或第三方库开发项目。
+Vue 的优点在于它的编码模式简洁，体积小，运行效率高，适合移动端和 PC 端的开发，它只关注于 UI ，可以轻松引入 Vue 插件或第三方库开发项目。
 
 Vue 借鉴了 Angular 框架的模块和数据绑定，借鉴了 React 的组件化和虚拟 DOM 技术。
 
 ## Vue 基本使用
 
-```js
+``` html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
-  <div id="app">
-    <input type="text" v-model="userName"/>
-    <p>{{ message }} {{ userName }}</p>
-  </div>
-  <script>
-    var app = new Vue({
-      el: "#app",
-      data: {
-        message: "hello world",
-        userName: null
-      }
-    })
-  </script>
+    <div id="app">
+        <input type="text" v-model="userName" />
+        <p>{{ message }} {{ userName }}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "hello world",
+                userName: null,
+            },
+        });
+    </script>
 </body>
+
 </html>
 ```
 
@@ -45,61 +48,59 @@ Vue 借鉴了 Angular 框架的模块和数据绑定，借鉴了 React 的组件
 
 通过构造 Vue 就可以创建一个 Vue 的根实例，并启动 Vue 应用：
 
-```javascript
+``` javascript
 var app = new Vue({
     //选项
-})
+});
 ```
 
-变量`app`就代表 Vue 实例。
-必不可少的一个选项是`el`，`el`用于指定一个页面中已存在的DOM元素来挂载实例，它可以是HTML标签，也可以是css选择器，比如：  
+变量 `app` 就代表 Vue 实例。
+必不可少的一个选项是 `el` ， `el` 用于指定一个页面中已存在的 DOM 元素来挂载实例，它可以是 HTML 标签，也可以是 css 选择器，比如：
 
-```html
+``` html
 <div id="app"></div>
-var app = new Vue({
-    el:document.getElementById('app');//或者直接写"#app"
-})
+var app = new Vue({ el:document.getElementById('app');//或者直接写"#app" })
 ```
 
-挂载后我们可以通过`app.$el`来访问该元素，通过 Vue 实例中的`data`选项，可以声明应用内需要双向绑定的数据。
+挂载后我们可以通过 `app.$el` 来访问该元素，通过 Vue 实例中的 `data` 选项，可以声明应用内需要双向绑定的数据。
 
-```javascript
+``` javascript
 var app = new Vue({
-    el:'#app';
-    data:{
-        a:2;
+    el: '#app';
+    data: {
+        a: 2;
     }
 })
 ```
 
-Vue 实例本身代理了`data`对象里的所有属性，所以可以这样访问：`console.log(app.a);//2`，`app.a`访问了`a`属性。  
+Vue 实例本身代理了 `data` 对象里的所有属性，所以可以这样访问： `console.log(app.a);//2` ， `app.a` 访问了
+`a` 属性。
 
 可以指向一个已有的变量，并且它们之间默认建立了双向绑定，修改其中一个，另一个也会被修改。
 
-```javascript
-var myData={
-    a:1
-}
+``` javascript
+var myData = {
+    a: 1,
+};
 var app = new Vue({
-    el:"#app",
-    data:myData,
-})
-app.a=2;
+    el: "#app",
+    data: myData,
+});
+app.a = 2;
 
 //修改属性，原数据也会随之修改
-console.log(myData.a);//2
+console.log(myData.a); //2
 
 //修改原数据，Vue属性也会被修改
-myData.a=3;
-console.log(app.a);//3
-
+myData.a = 3;
+console.log(app.a); //3
 ```
 
-### Vue插值操作
+### Vue 插值操作
 
-在Vue中使用`{{}}`来进行插值，在双大括号内可以对数据进行简单操作，如字符串拼接：
+在 Vue 中使用 `{{}}` 来进行插值，在双大括号内可以对数据进行简单操作，如字符串拼接：
 
-```html
+``` html
 <div id="app">
     <div>{{firstname+lastname}}</div>
 </div>
@@ -109,50 +110,56 @@ console.log(app.a);//3
         data: {
             firstname: "Hello",
             lastname: "World!",
-        }
-    })
+        },
+    });
 </script>
 ```
 
 还可以在双花括号内对变量进行四则运算：
 
-```javascript
-<div id="app">
-    <div>{{number*10*3.1415926}}</div>
-</div>
-<script>
-    var vm = new Vue({
-        el: "#app",
-        data: {
-            number: 512,
+``` javascript
+< div id = "app" >
+    <
+    div > {
+        {
+            number * 10 * 3.1415926
         }
-    })
-</script>
+    } < /div> < /
+div > <
+    script >
+    var vm = new Vue({
+            el: "#app",
+            data: {
+                number: 512,
+            }
+        }) <
+        /script>
 ```
 
 ## v-text / v-html
 
-插值语法使用双大括号可以将变量的值表示显示出来，`v-html`能将 Vue 对象内的`data`的内容转换为 HTML 标签内容，而`v-text`能将内容转换为文本内容。
+插值语法使用双大括号可以将变量的值表示显示出来， `v-html` 能将 Vue 对象内的 `data` 的内容转换为 HTML 标签内容，
+而 `v-text` 能将内容转换为文本内容。
 
-```html
+``` html
 <div id="app">
-<p v-html="htmlContent"/>
+    <p v-html="htmlContent" />
 </div>
 <script>
-const vm = new Vue({
-    el: "#app",
-    data:{
-    htmlContent: "<a href='www.baidu.com'>baidu</a>",
-    }
-})
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            htmlContent: "<a href='www.baidu.com'>baidu</a>",
+        },
+    });
 </script>
 ```
 
 ## v-bind 指令
 
-`v-bind`动态绑定 HTML 中的属性：
+`v-bind` 动态绑定 HTML 中的属性：
 
-```html
+``` html
 <div id="app">
     <a v-bind:href="aHref">百度一下</a>
 </div>
@@ -161,26 +168,26 @@ const vm = new Vue({
         el: "#app",
         data: {
             aHref: "http://www.baidu.com",
-        }
-    })
+        },
+    });
 </script>
 ```
 
-上例中`<a>`标签内的`href`属性被绑定了`v-bind`，`href`的值可以根据 Vue 中的`data`动态改变。
+上例中 `<a>` 标签内的 `href` 属性被绑定了 `v-bind` ， `href` 的值可以根据 Vue 中的 `data` 动态改变。
 
-语法糖：`v-bind`可以简写成`:`，添加到要绑定的属性前。
+语法糖： `v-bind` 可以简写成 `:` ，添加到要绑定的属性前。
 
-### v-bind绑定class并使用对象语法
+### v-bind 绑定 class 并使用对象语法
 
-`v-bind`可以绑定class后使用对象语法来控制`class`的值，例：
+`v-bind` 可以绑定 class 后使用对象语法来控制 `class` 的值，例：
 
-```html
+``` html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="js/vue.js"></script>
     <style>
@@ -211,11 +218,12 @@ const vm = new Vue({
 
 <body>
     <div id="app">
-        <div class="bgC" :class="{isRed:isRedValue,isGreen:isGreenValue}">改变背景色</div>
-        <div id="button">
-            <button v-on:click="changeColorRed">红色</button>
-            <button id="green" v-on:click="changeColorGreen">绿色</button>
-        </div>
+        < div class="bgC" : class="{isRed:isRedValue,isGreen:isGreenValue}">
+            改变背景色 < /div>
+                <div id="button">
+                    <button v-on:click="changeColorRed">红色</button>
+                    <button id="green" v-on:click="changeColorGreen">绿色</button>
+                </div>
     </div>
     <script>
         var vm = new Vue({
@@ -231,23 +239,33 @@ const vm = new Vue({
                 },
                 changeColorRed: function() {
                     this.isRedValue = !this.isRedValue;
-                }
-            }
-        })
+                },
+            },
+        });
     </script>
 </body>
 
 </html>
 ```
 
-以上案例通过点击按钮能够切换`id`为`#bgC`的背景色。关键在于`<div class="bgC" :class="{isRed:isRedValue,isGreen:isGreenValue}">改变背景色</div>`这句中，将class除`.bgC`外又绑定了`isRed`与`isGreen`，这两个`value`值初始状态下为`false`，在点击相应按钮后，可以使它们的value值为true。
-除动态绑定的`class`外，还可以设置一个不绑定`v-bind`的`class`值，它们并不会冲突。
+以上案例通过点击按钮能够切换 `id` 为 `#bgC` 的背景色。关键在于
+
+``` js
+< div class = "bgC": class = "{isRed:isRedValue,isGreen:isGreenValue}" >
+    改变背景色 <
+    /div>
+```
+
+这句中，将 `class` 除 `.bgC` 外又绑定了 `isRed` 与 `isGreen` ，这两个 `value` 值初始状态下为 `false` ，
+在点击相应按钮后，可以使它们的 `value` 值为 `true` 。
+
+除动态绑定的 `class` 外，还可以设置一个不绑定 `v-bind` 的 `class` 值，它们并不会冲突。
 
 ### v-bind 动态绑定 class 数组语法
 
-也可以使用数组语法动态绑定`class`，例：
+也可以使用数组语法动态绑定 `class` ，例：
 
-```html
+``` html
 <div id="yel">
     <div :class="[bgSize,color]"></div>
 </div>
@@ -266,25 +284,31 @@ const vm = new Vue({
         el: "#yel",
         data: {
             bgSize: "bgSize",
-            color: "color"
-        }
-    })
+            color: "color",
+        },
+    });
 </script>
 ```
 
-以上例子通过数组的方式将`bgSize`与`color`class样式动态传递给div标签，使div拥有了动态的class样式。
+以上例子通过数组的方式将 `bgSize` 与 `color`  `class` 样式动态传递给 `div` 标签，
+使 `div` 拥有了动态的 `class` 样式。
 
-### v-bind动态绑定style属性
+### v-bind 动态绑定 style 属性
 
-与动态绑定class类似也有对象写法，例：
+与动态绑定 class 类似也有对象写法，例：
 
-```html
-<div :style={属性名:属性值}><div>
+``` html
+<div :style="{属性名:属性值}">
+    <div></div>
+</div>
 ```
 
-在绑定中的HTML标签内写上绑定css样式的对象写法，其中对象名实际是css中的属性名，如对象名可以用`fontSize`，`fontSize`实际是css中的`font-size`的驼峰写法。对象的`value`可以直接明确标出css中的样式对应的属性值，或者使用变量名的方式，在构造的vue内的`data`中再写出变量对应的属性值，例：
+在绑定中的 HTML 标签内写上绑定 `css` 样式的对象写法，其中对象名实际是 `css` 中的属性名，如对象名可以用 `fontSize` ，
+`fontSize` 实际是 css 中的 `font-size` 的驼峰写法。
 
-```html
+对象的 `value` 可以直接明确标出 `css` 中的样式对应的属性值，或者使用变量名的方式，在构造的 vue 内的 `data` 中再写出变量对应的属性值，例：
+
+``` html
 <div id="fontCont">
     <div :style="{fontSize:finalFont}">Hello World！</div>
 </div>
@@ -293,36 +317,32 @@ const vm = new Vue({
         el: "#fontCont",
         data: {
             finalFont: "50px",
-        }
-    })
+        },
+    });
 </script>
 ```
 
-还可以用字符串拼接的方式，将传递的int值拼接成字符串，例：
+还可以用字符串拼接的方式，将传递的 `int` 值拼接成字符串，例：
 
-```html
+``` html
 <div id="app1">
-    <div :style="{fontSize:finalSize+'px'}">
-        Hello World!
-    </div>
+    <div :style="{fontSize:finalSize+'px'}">Hello World!</div>
 </div>
 <script>
     var vm3 = new Vue({
         el: "#app1",
         data: {
             finalSize: 100,
-        }
-    })
+        },
+    });
 </script>
 ```
 
-可以将要绑定的css对象在data中声明后用对象名的方式来动态绑定style，例：
+可以将要绑定的 css 对象在 `data` 中声明后用对象名的方式来动态绑定 style，例：
 
-```html
+``` html
 <div id="app1">
-    <div :style="fontC">
-        Hello World!
-    </div>
+    <div :style="fontC">Hello World!</div>
 </div>
 <script>
     var vm3 = new Vue({
@@ -331,16 +351,16 @@ const vm = new Vue({
             finalSize: 100,
             fontC: {
                 fontSize: "100px",
-                color: "red"
-            }
-        }
-    })
+                color: "red",
+            },
+        },
+    });
 </script>
 ```
 
-也可以将对象封装到方法中，然后以方法名的方式绑定到style上，例：
+也可以将对象封装到方法中，然后以方法名的方式绑定到 style 上，例：
 
-```html
+``` html
 <div id="app3">
     <div :style="getFontSize()">{{text}}</div>
 </div>
@@ -349,26 +369,26 @@ const vm = new Vue({
         el: "#app3",
         data: {
             text: "你好，世界！",
-            finalSize: '100px',
-            fontColor: 'red'
+            finalSize: "100px",
+            fontColor: "red",
         },
         methods: {
             getFontSize: function() {
                 return {
                     fontSize: this.finalSize,
-                    color: this.fontColor
+                    color: this.fontColor,
                 };
-            }
-        }
-    })
+            },
+        },
+    });
 </script>
 ```
 
-### 数组方式动态绑定style
+### 数组方式动态绑定 style
 
-将总的css样式写成对象后，再将对象放置在数组中绑定到style上，例：
+将总的 css 样式写成对象后，再将对象放置在数组中绑定到 style 上，例：
 
-```html
+``` html
 <div id="app4">
     <div :style="[baseStyle]">{{message}}</div>
 </div>
@@ -378,10 +398,256 @@ const vm = new Vue({
         data: {
             message: "hello World!",
             baseStyle: {
-                fontSize: '50px',
-                color: 'blue'
-            }
+                fontSize: "50px",
+                color: "blue",
+            },
+        },
+    });
+</script>
+```
+
+## 计算属性 computed
+
+我们可以使用封装成方法的方式，传值给双大括号内的方法，例：
+
+``` html
+<div id="app5">
+    <div>{{getFullname()}}</div>
+</div>
+<script>
+    var vm6 = new Vue({
+        el: "#app5",
+        data: {
+            firstName: "Hello",
+            lastName: "World!",
+        },
+        methods: {
+            getFullname() {
+                return this.firstName + " " + this.lastName;
+            },
+        },
+    });
+</script>
+```
+
+上例中花括号内的 `getFullname()` 是一个方法，返回值是 data 内的 `firstName` 与 `lastName` 的拼接。
+
+也可以使用计算属性的方式，把值传递给双大括号内的属性。例：
+
+``` html
+<div id="app6">
+    <div>{{fullName}}</div>
+</div>
+<script>
+    var app6 = new Vue({
+        el: "#app6",
+        data: {
+            firstName: "Hello",
+            lastName: "World!",
+        },
+        computed: {
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            },
+        },
+    });
+</script>
+```
+
+计算属性不需要像方法那样加上括号，只需要属性名即可。
+
+一个例子，计算属性调用对象：
+
+``` html
+<div id="objectUse">
+    <div>{{booki}}</div>
+</div>
+<script>
+    const v = new Vue({
+        el: "#objectUse",
+        data: {
+            books: [{
+                    id: 1,
+                    name: "book1",
+                    price: 100,
+                },
+                {
+                    id: 2,
+                    name: "book2",
+                    price: 120,
+                },
+                {
+                    id: 3,
+                    name: "book3",
+                    price: 89,
+                },
+            ],
+        },
+        computed: {
+            booki: function() {
+                let book = "";
+                for (let i in this.books) {
+                    book +=
+                        "id: " + this.books[i].id + " book name: " + this.books[i].name;
+                }
+                return book;
+            },
+        },
+    });
+</script>
+```
+
+这里的计算属性中的 `function()` 用的是 `for..in..` 写法， `for.. in..` 每次迭代时，从要迭代的对象中取出索引值，
+
+也可以使用 `for..of..` 写法， `for..of..` 每次迭代取出的是迭代对象的值，而不是索引值，例：
+
+``` html
+<div id="objectUse">
+    <div>total price: {{totalPrice}}</div>
+</div>
+<script>
+    const v = new Vue({
+        el: "#objectUse",
+        data: {
+            books: [{
+                    id: 1,
+                    name: "book1",
+                    price: 100,
+                },
+                {
+                    id: 2,
+                    name: "book2",
+                    price: 120,
+                },
+                {
+                    id: 3,
+                    name: "book3",
+                    price: 89,
+                },
+            ],
+        },
+        computed: {
+            totalPrice: function() {
+                let price = 0;
+                for (let i of this.books) {
+                    price += i.price;
+                }
+                return price.toString();
+            },
+        },
+    });
+</script>
+```
+
+### getter 和 setter
+
+计算属性默认只有 `getter` ，不过也可以手动设置。
+
+``` html
+<div id="app">
+    <input type="text" v-model="firstName" />
+    <input type="text" v-model="lastName" />
+    <p>fullName: {{fullName}}</p>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            firstName: null,
+            lastName: null,
+        },
+        computed: {
+            fullName: {
+                get() {
+                    return this.firstName + this.lastName;
+                },
+                set(newData) {
+                    const currentData = newData.split(" ");
+                    this.firstName = currentData[0];
+                    this.lastName = currentData[1];
+                },
+            },
+        },
+    });
+</script>
+```
+
+上例中，当我们在控制台内强制改变 `fullName` 的值时， `set` 才会发生作用，所以实际上 `setter` 使用的次数很少。
+
+## 侦听属性 watch
+
+侦听属性 `watch` 能在监听的对象发生改变时，执行所设定的函数。例：
+
+``` html
+<div id="app">
+    <input v-model="fullname" type="text" />
+    <p>{{fullname}}</p>
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            fullname: "firstName lastName",
+        },
+        watch: {
+            fullname(newData, oldData) {
+                console.log(oldData);
+                console.log(newData);
+            },
+        },
+    });
+</script>
+```
+
+上述 `watch` 监听的是 `fullname` ，当 `fullname` 发生变化时，执行 `watch` 中为 `fullname` 绑定的方法，该方法有两个参数，旧数据与新数据。
+
+`oldData` 可以不写，只使用 `watch` 的新数据也是可以的。
+
+## 条件渲染
+
+`v-if` 、 `v-else-if` 、 `v-else` 的使用可以使得我们使用的标签在条件符合时才会出现，
+
+``` html
+<div id="app">
+    <p v-if="num == 0">0</p>
+    <p v-else-if="num == 1">1</p>
+    <p v-else>2</p>
+    <input type="button" value="add" @click=" num += 1" />
+    <input type="button" value="sub" @click=" num -= 1" />
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            num: 0,
+        },
+    });
+</script>
+```
+
+`v-show` 是另一个用于条件渲染的指令。
+
+``` html
+<div id="app">
+    <div class="cube" v-show="show">这是一个红色方块</div>
+    <input type="button" value="click" @click="show = !show">
+</div>
+<style>
+    .cube {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            show: true,
         }
     })
 </script>
 ```
+
+`v-show`与`v-if`的区别在于，`v-show`不论条件是否符合，都会把元素先加载出来，只是不显示，`v-if`条件为`false`是不会加载也不会显示的。
+

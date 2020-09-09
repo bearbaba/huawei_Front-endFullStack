@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p v-if="num == 0">0</p>
+    <p v-else-if="num == 1">1</p>
+    <p v-else>2</p>
+    <input type="button" value="add" @click=" num += 1">
+    <input type="button" value="sub" @click=" num -= 1">
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data:{
+        num: 0,
+      },
+      
+    })
+  </script>
+</body>
+</html>
