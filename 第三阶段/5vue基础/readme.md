@@ -651,3 +651,42 @@ div > <
 
 `v-show`与`v-if`的区别在于，`v-show`不论条件是否符合，都会把元素先加载出来，只是不显示，`v-if`条件为`false`是不会加载也不会显示的。
 
+## v-for指令
+
+v-for可以遍历数组与对象，语法格式：`v-for="item in items"`。
+遍历数组时，如果设置了两个参数要从遍历的数组中取出，那么第一个参数是取出的值，第二个参数是索引值。例：
+
+```html
+<div id="app">
+    <div v-for="(item,index) in items">{{item}}--{{index}}</div>
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            items: [1, 2, 4, 5, 6, 6, 2],
+        }
+    })
+</script>
+```
+
+`v-for`遍历对象时，可以设置三个参数，这三个参数分别对应对象的值，对象名和对象的索引值。例：
+
+```html
+<div id="app">
+    <div v-for="(value,key,index) in objects">{{key}}--{{value}}--{{index}}</div>
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            objects: {
+                color: "red",
+                fruits: "vegetable",
+                food: "beef",
+            }
+        }
+    })
+</script>
+```
+

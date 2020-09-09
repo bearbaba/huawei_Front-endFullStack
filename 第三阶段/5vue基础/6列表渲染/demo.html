@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ol>
+      <li v-for="item, index in person" :key=index>name: {{ item["name"] }} 难度：{{ item["难度"] }}</li>
+    </ol>
+    <ul>
+      <li v-for="value in person1">{{value}}</li>
+    </ul>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data:{
+        person:[
+          {name: "Java", "难度":3},
+          {name: "Python", "难度": 2},
+          {name: "C++", "难度": 4}
+        ],
+        person1:{
+          name: "Jack",
+          age: "14",
+          height: 160,
+          weight: 50,
+        }
+      }
+    })
+  </script>
+</body>
+</html>
