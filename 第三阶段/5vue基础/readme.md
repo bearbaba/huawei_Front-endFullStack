@@ -697,6 +697,7 @@ v-for可以遍历数组与对象，语法格式： `v-for="item in items"` 。
 使用@click调用 `methods` 中的函数时要注意参数问题。
 
 * 情况一：如果该方法不需要额外参数，那么方法后的()可以不用加，
+
 但是要注意的是，如果方法本事中有一个参数，尽管这个参数并没有明确指定它所要指向的对象，但系统会默认将原生事件event参数传递进去。
 
 * 情况二，如果需要传入某个参数，同时还需要event时，可以通过$event传入事件。例：
@@ -876,7 +877,7 @@ v-for可以遍历数组与对象，语法格式： `v-for="item in items"` 。
 ``` html
     <div id="checkBox">
         <label v-for="value in hobbies"><input type="checkbox" :value="value" v-model="list">
-        {{value}}
+            {{value}}
         </label>
         {{list}}
     </div>
@@ -989,3 +990,70 @@ v-for可以遍历数组与对象，语法格式： `v-for="item in items"` 。
 ```
 
 上例中的 `<button>` 动态绑定了 `isNumber` 方法，用于判断输入的字符串是否转换为数字，在控制台中可以看到确实转为了数字。
+
+## 生命周期函数
+
+Vue 含有以下声明周期函数：
+
+1. `beforeCreate` ，实例初始化之后， `this` 指向创建的实例，不能访问到 `data` 、 `computed` 、 `watch` 、 `methods` 上的方法和数据。
+2. `created` ，实例创建完成，可访问 `data` 、 `computed` 、 `watch` 、 `methods` 上的方法和数据，未挂载 DOM ，不能访问到 `$el` ， `$ref` 为空数组。
+3. `beforeMount` ，在开始挂载前被调用，在 `beforeMount` 之前会找到对应的 `template` ，并编译成 `render` 函数。
+4. `mounted` ，实例挂载到 DOM 上，此时可以通过 DOM API 获得 DOM 节点， `$ref` 属性可以访问。
+5. `beforeUpdate` ，在响应式数据更新时调用，发生在虚拟 DOM 打补丁之前。
+6. `updated` ，虚拟 DOM 重新渲染和打补丁之后调用，组件 DOM 已经更新，可执行依赖于 DOM 的操作。
+7. `beforeDestroy` ，实例销毁之前调用，此时实例仍然可用， `this` 仍能获取到实例。
+9. `destroyed` ，实例销毁后调用，调用后， Vue 实例指示的所有东西都会解绑定，所有事件监听器会被溢出，所有的子实例也会被销毁。
+
+`mounted` 不会承诺子组件也会被一齐渲染。
+
+生命周期函数也被称为“钩子”函数。
+
+``` html
+<! DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <p v-show="isShow">Hello World</p>
+        <input type="button" value="destory" @click="destory()">
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                isShow: true
+            },
+            mounted() {
+                this.clock = setInterval(() => {
+                    console.log("counter")
+                    this.isShow = !this.isShow
+                }, 1000)
+            },
+            methods: {
+                destory() {
+                    this.$destroy()
+                }
+            },
+            beforeDestroy() {
+                clearInterval(this.clock)
+            },
+        })
+    </script>
+</body>
+
+</html>
+```
+
+定时器如果不使用`clearInterval()`清除的话，它会一直执行，耗费内存，如果我们只使用`$destroy()`，而不用`clearInterval()`并不能清除定时器。
+
+我们选择清除定时器的位置是在整个实例被销毁前，如果选择在`destroyed`时清除定时器也是有效的。
+

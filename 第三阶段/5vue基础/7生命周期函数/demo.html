@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p v-show="isShow">Hello World</p>
+    <input type="button" value="destory" @click="destory()">
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        isShow: true
+      },
+      mounted() {
+        this.clock = setInterval(() => {
+          console.log("counter")
+          this.isShow = !this.isShow
+        }, 1000)
+      },
+      methods: {
+        destory() {
+          this.$destroy()
+        }
+      },
+      destroyed() {
+        clearInterval(this.clock)
+      }
+    })
+  </script>
+</body>
+
+</html>
