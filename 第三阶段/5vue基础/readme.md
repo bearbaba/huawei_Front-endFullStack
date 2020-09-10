@@ -649,14 +649,14 @@ div > <
 </script>
 ```
 
-`v-show`与`v-if`的区别在于，`v-show`不论条件是否符合，都会把元素先加载出来，只是不显示，`v-if`条件为`false`是不会加载也不会显示的。
+`v-show` 与 `v-if` 的区别在于， `v-show` 不论条件是否符合，都会把元素先加载出来，只是不显示， `v-if` 条件为 `false` 是不会加载也不会显示的。
 
 ## v-for指令
 
-v-for可以遍历数组与对象，语法格式：`v-for="item in items"`。
+v-for可以遍历数组与对象，语法格式： `v-for="item in items"` 。
 遍历数组时，如果设置了两个参数要从遍历的数组中取出，那么第一个参数是取出的值，第二个参数是索引值。例：
 
-```html
+``` html
 <div id="app">
     <div v-for="(item,index) in items">{{item}}--{{index}}</div>
 </div>
@@ -670,9 +670,9 @@ v-for可以遍历数组与对象，语法格式：`v-for="item in items"`。
 </script>
 ```
 
-`v-for`遍历对象时，可以设置三个参数，这三个参数分别对应对象的值，对象名和对象的索引值。例：
+`v-for` 遍历对象时，可以设置三个参数，这三个参数分别对应对象的值，对象名和对象的索引值。例：
 
-```html
+``` html
 <div id="app">
     <div v-for="(value,key,index) in objects">{{key}}--{{value}}--{{index}}</div>
 </div>
@@ -690,3 +690,302 @@ v-for可以遍历数组与对象，语法格式：`v-for="item in items"`。
 </script>
 ```
 
+## v-on事件监听
+
+`v-on` 用于监听事件，例如 `v-on:click=""` 用于指向 `methods` 中的方法。
+语法糖：在绑定的事件前加@，例 `@click` ，
+使用@click调用 `methods` 中的函数时要注意参数问题。
+
+* 情况一：如果该方法不需要额外参数，那么方法后的()可以不用加，
+但是要注意的是，如果方法本事中有一个参数，尽管这个参数并没有明确指定它所要指向的对象，但系统会默认将原生事件event参数传递进去。
+
+* 情况二，如果需要传入某个参数，同时还需要event时，可以通过$event传入事件。例：
+
+``` html
+<div id="app">
+    <div>{{message}}</div>
+    <button @click="addMethod(message,$event)">+</button>+</button>
+</div>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            message: 0,
+        },
+        methods: {
+            addMethod(message, $event) {
+                this.message++;
+                console.log(message);
+                console.log($event);
+            }
+        }
+    })
+</script>
+```
+
+上例中每次调用 `addMethod` 方法时，打印 `message` 值与 `event` 事件对象。
+
+### v-on修饰符的使用
+
+`.stop` 能阻止事件冒泡，所谓事件冒泡就是一个父子元素同时拥有方法时，点击子元素，父元素的方法也会进行。例：
+
+``` html
+<div id="app1" @click="clickA('clickA')">
+    <button @click="clickB('clickB')">B</button>
+</div>
+<script>
+    const vm1 = new Vue({
+        el: "#app1",
+        methods: {
+            clickA: function(string) {
+                console.log(string);
+            },
+            clickB: function(string) {
+                console.log(string)
+            }
+        }
+    })
+</script>
+```
+
+以上生成了一个B按钮，当B按钮被点击时，控制台会出现“clickA”与“clickB”，说明B被按下时，父元素的方法也会被调用，这就是事件冒泡，
+当我们只想要B被按下只出现 `clickB` 方法而不出现父元素方法时，就可以用 `.stop` 修饰符。例：
+
+``` html
+<div id="app1" @click="clickA('clickA')">
+    <button @click.stop="clickB('clickB')">B<button>
+</div>
+<script>
+    const vm1 = new Vue({
+        el: "#app1",
+        methods: {
+            clickA: function(string) {
+                console.log(string);
+            },
+            clickB: function(string) {
+                console.log(string)
+            }
+        }
+    })
+</script>
+```
+
+显然，v-on的修饰符只需要在v-on所修饰的事件监听后添加就可以使用了。
+
+`.prevent` 阻止默认事件，一些元素本身含有默认时间，比如 `<a>` 被点击时会跳转到设置的链接页面上，添加一个方法后，在 `click` 后
+添加 `.prevent` 即可阻止点击后默认跳转的事件。
+
+``` html
+<div id="app2">
+    <a href="http://www.baidu.com" @click.prevent="printEvent">点击后不跳转</a>
+</div>
+<script>
+    const vm2 = new Vue({
+        el: "#app2",
+        methods: {
+            printEvent: function() {
+                console.log("不跳转");
+            }
+        }
+    })
+</script>
+```
+
+`.{keyCode|keyAlias}` 只当事件是从特定键触发时才能回调，例：
+
+``` html
+<div id="app4">
+    <input type="text" name="输入框" @keyup.enter="print">
+</div>
+<script>
+    const vm3 = new Vue({
+        el: "#app4",
+        methods: {
+            print: function() {
+                console.log("抬起键盘");
+            }
+        }
+    })
+</script>
+```
+
+上例中 `@keyup` 表示监听键盘抬起的事件， `@keyup.enter` 表示只监听Enter键被抬起的事件。
+
+`.once` 只调用一次，使用 `.once` 修饰的事件监听方法时，方法只能使用一次。
+
+`.native` ，自定义HTML组件的方法一般是监听不到的，只能在使用 `.native` 后才能被监听到。
+
+## v-model双向绑定
+
+我们可以使用 `v-model` 对一个变量进行双向绑定。例如，给 `input` 输入框设置一个 `v-model` 绑定一个变量，通过输入内容的改变，来动态改变变量的值：
+
+``` html
+    <div id="app">
+        <input type="text" name="input" v-model="message">
+        <div>{{message}}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                message: null,
+            }
+        })
+    </script>
+```
+
+进行双向绑定的值，可以通过改变Vue实例data中变量的值进行该改变。
+
+### v-model在radio单选按钮上的使用
+
+在单选按钮radio上使用v-model可以将所选的值绑定到Vue实例的data中。
+例，单选性别后，将选中的性别显示在页面上。
+
+### v-model在checkbox元素上的使用
+
+在checkbox上的使用分为两种情况：单个复选框与多个复选框。
+
+#### 单选框
+
+单个复选框的使用范围包含某个协议的同意与否。
+例：
+
+``` html
+<div id="agreement">
+    <label for="check">
+        <input type="checkbox" name="" id="check" value="同意" v-model="argee" />
+        同意协议
+    </label>
+</div>
+<script>
+    const agreement = new Vue({
+        el: "#agreement",
+        data: {
+            argee: false,
+        }
+    })
+</script>
+```
+
+以上例子将会出现一个同意协议的复选框，默认情况下复选框没有被选中。
+
+#### 多选框
+
+当 `v-model` 使用在多选框内， `v-model` 所对应的data属性是个数组类型，当选中多选框按钮时， `v-model` 所绑定的属性会被添加到数组中，例：
+
+``` html
+    <div id="checkBox">
+        <label v-for="value in hobbies"><input type="checkbox" :value="value" v-model="list">
+        {{value}}
+        </label>
+        {{list}}
+    </div>
+    <script>
+        const selectBox = new Vue({
+            el: "#checkBox",
+            data: {
+                hobbies: ["篮球", "足球", "排球", "羽毛球"],
+                list: [],
+            }
+        })
+    </script>
+```
+
+### v-model在元素 `select` 上的使用
+
+和 `checkbox` 类似， `v-model` 在 `select` 上的使用也分为单选和多选。
+
+#### 单选情况
+
+单选时， `v-model` 绑定的是一个值，当浏览器被刷新时， `v-model` 绑定的那个值依然是默认被选中的。例：
+
+``` html
+    <div id="selectBox">
+        <select v-model="fruit">
+            <option value="apple">苹果</option>
+            <option value="banana">香蕉</option>
+            <option value="orange">橘子</option>
+            <option value="grane">葡萄</option>
+        </select>
+    </div>
+    <script>
+        const fruitBox = new Vue({
+            el: "#selectBox",
+            data: {
+                fruit: "banana",
+            }
+        })
+    </script>
+```
+
+#### 多选情况
+
+多选情况时，要手动为 `select` 元素添加 `multiple` 属性，与 `checkbox` 相似多选时会动态添加到 `data` 内的数组，例：
+
+``` html
+    <div id="multipleBox">
+        <select name="" id="" multiple v-model="fruit">
+            <option value="apple">苹果</option>
+            <option value="banana">香蕉</option>
+            <option value="orange">橘子</option>
+            <option value="grane">葡萄</option>
+        </select>
+        <div>{{fruit}}</div>
+    </div>
+    <script>
+        const vm2 = new Vue({
+            el: "#multipleBox",
+            data: {
+                fruit: [],
+            }
+        })
+    </script>
+```
+
+### v-model修饰符
+
+#### lazy修饰符
+
+默认情况下， `v-model` 默认是在input事件中同步输入框的数据的， `v-model` 在使用 `lazy` 修饰符后，可以让数据在失去焦点或者回车时才会更新，例：
+
+``` html
+    <div id="lazyUsed">
+        <input type="text" id="" v-model.lazy="message">
+        <div>{{message}}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#lazyUsed",
+            data: {
+                message: "",
+            }
+        })
+    </script>
+```
+
+#### number修饰符
+
+默认情况下，在输入框中无论我们输入的是字母还是数字，都会被当做字符串类型进行处理。 `number` 修饰符可以将输入内容转换成数字，例：
+
+``` html
+    <div id="numberUsed">
+        <input type="text" id="" v-model.number="message">
+        <div>{{message}}</div>
+        <button @click="isNumber">是否为数字</button>
+    </div>
+    <script>
+        const vm1 = new Vue({
+            el: "#numberUsed",
+            data: {
+                message: " ",
+            },
+            methods: {
+                isNumber: function() {
+                    console.log(typeof this.message);
+                }
+            }
+        })
+    </script>
+```
+
+上例中的 `<button>` 动态绑定了 `isNumber` 方法，用于判断输入的字符串是否转换为数字，在控制台中可以看到确实转为了数字。
